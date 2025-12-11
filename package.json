@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "node --max_old_space_size=460 ./node_modules/@angular/cli/bin/ng build --configuration production",
+    "build": "ng build --configuration production",
     "build:local": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -19,15 +19,15 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.14.3"
-  },
-  "devDependencies": {
     "@angular-devkit/build-angular": "^18.0.0",
     "@angular/cli": "^18.0.0",
     "@angular/compiler-cli": "^18.0.0",
-    "@types/node": "^20.11.0",
-    "typescript": "~5.4.0"
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "typescript": "~5.4.0",
+    "zone.js": "~0.14.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0"
   }
 }
