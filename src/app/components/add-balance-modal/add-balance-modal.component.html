@@ -1,0 +1,49 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Añadir Saldo</h2>
+      <button class="close-btn" (click)="onClose()">×</button>
+    </div>
+
+    <form [formGroup]="balanceForm" (ngSubmit)="onSubmit()">
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="amount">Monto a añadir</label>
+          <div class="input-group">
+            <span class="input-icon">€</span>
+            <input 
+              type="number" 
+              id="amount" 
+              formControlName="amount"
+              [class.error]="amount?.invalid && amount?.touched"
+              placeholder="100.00"
+              step="0.01"
+            />
+          </div>
+          <div class="error-message" *ngIf="amount?.invalid && amount?.touched">
+            <span *ngIf="amount?.errors?.['required']">El monto es requerido</span>
+            <span *ngIf="amount?.errors?.['min']">El monto mínimo es €1</span>
+            <span *ngIf="amount?.errors?.['max']">El monto máximo es €10,000</span>
+          </div>
+        </div>
+
+        <div class="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-cancel" (click)="onClose()">
+          Cancelar
+        </button>
+        <button 
+          type="submit" 
+          class="btn-submit" 
+          [disabled]="loading || balanceForm.invalid"
+        >
+          {{ loading ? 'Procesando...' : 'Añadir Saldo' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

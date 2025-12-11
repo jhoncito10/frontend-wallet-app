@@ -1,0 +1,39 @@
+<div class="statistics-container">
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div class="stat-card income-card">
+      <div class="stat-icon">↑</div>
+      <div class="stat-info">
+        <span class="stat-label">Total Ingresos</span>
+        <span class="stat-value">€{{ totalIncome | number:'1.2-2' }}</span>
+      </div>
+    </div>
+
+    <div class="stat-card expense-card">
+      <div class="stat-icon">↓</div>
+      <div class="stat-info">
+        <span class="stat-label">Total Gastos</span>
+        <span class="stat-value">€{{ totalExpenses | number:'1.2-2' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div class="chart-container">
+    <h3 class="chart-title">Evolución del Balance</h3>
+    <div *ngIf="chartData.length === 0" class="empty-chart">
+      No hay suficientes datos para mostrar el gráfico
+    </div>
+    <div *ngIf="chartData.length > 0" class="chart-wrapper">
+      <div class="chart-scroll">
+        <div class="chart-bars">
+          <div *ngFor="let point of chartData; let i = index" class="bar-container">
+            <div class="bar-value-top">€{{ point.balance | number:'1.0-0' }}</div>
+            <div class="bar" [style.height.%]="getBarHeight(point.balance)"></div>
+            <div class="bar-label">{{ point.displayDate }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
